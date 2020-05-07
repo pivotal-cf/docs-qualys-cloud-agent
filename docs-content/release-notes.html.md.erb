@@ -1,60 +1,30 @@
 ---
-title: Release Notes for YOUR-PRODUCT-NAME
+title: Release Notes for Qualys Cloud Agent for VMware Tanzu
 owner: Partners
 ---
 
 <strong><%= modified_date %></strong>
 
-**This topic should include the Release Notes for your product. For examples, see the 
-[GCP Service Broker Release Notes](http://docs.pivotal.io/gcp-sb/release-notes.html) or the 
-[ISS Knowtify Search Analytics Release Notes](http://docs.pivotal.io/knowtify/release.html).
-When you release a new version, add new release notes to this file, keeping the older notes below.**
+These are release notes for Qualys Cloud Agent for VMware Tanzu.
 
-These are release notes for YOUR-PRODUCT-NAME.
+##<a id="ver"></a> v1.0.0
 
-##<a id="ver"></a> vCURRENT-VERSION-NUMBER (Ex. v1.0.1)
+**Release Date:** May 13, 2020
 
-**Release Date:** RELEASE-DATE (Ex. October 1, 2017)
+**Features included in this release:**
 
-Features included in this release:
++ Qualys Cloud Agent installation on all Ubuntu stemcell based VMs in the VMware Tanzu environment.
 
-* Feature one.
-* Feature two.
-* Feature three.
++ Qualys Cloud Agent from all [Qualys Cloud Platforms](https://www.qualys.com/platform-identification/) is bundled in the tile and a particular Qualys Cloud Agent gets installed as per user configured inputs.
 
-Fixed issues in this release:
++ Private Cloud Platform(PCP) support is added by providing a custom download link. Customers using PCP, can host their cloud agent at some network-accessible location inside their own environment and use that URL in the download URL field on tile form during installation.
 
-* Fixed issue one.
-* Fixed issue two.
-* Fixed issue three.
++ Using Qualys Cloud Agent, you’ll get continuous network security updates of the VMs through the
+cloud. As soon as changes are discovered on your VMs, they’ll be assessed and you’ll know about new security threats and vulnerabilities.
 
-**When you have fixed issue, you should have a corresponding known issue in the release below.**
+**Known issues in this release:**
 
-Known issues in this release:
++ Only Ubuntu VMs are supported.
 
-* Issue one.
-* Issue two.
-* Issue three.
++ Uninstalling the tile does not cleanly remove the cloud agent and hence during installation, the existing qualys-cloud-agent package is removed first irrespective of it being installed earlier and then the configured Debian package is installed.
 
-
-##<a id="ver"></a> vPREVIOUS-VERSION-NUMBER (Ex. v1.0.0)
-
-**Release Date:** RELEASE-DATE (Ex. August 1, 2017)
-
-Features included in this release:
-
-* Feature one.
-* Feature two.
-* Feature three.
-
-Fixed issues in this release:
-
-* Fixed issue one.
-* Fixed issue two.
-* Fixed issue three.
-
-Known issues in this release:
-
-* Issue one.
-* Issue two.
-* Issue three.
