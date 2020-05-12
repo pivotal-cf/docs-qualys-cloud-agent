@@ -1,121 +1,88 @@
 ---
-title: YOUR-PRODUCT-NAME (Beta)
+title: Qualys Cloud Agent for VMware Tanzu (Beta)
 owner: Partners
 ---
 
 <strong><%= modified_date %></strong>
 
-**If this product is in beta, keep and edit the warning note below.**
-<p class="note warning">
-<strong>Warning: </strong>
-The PRODUCT-NAME for VMware Tanzu tile is currently in beta and is intended for evaluation and test purposes only.
-Do not use this product in a VMware Tanzu production environment.
+<p class="note">
+<strong>Note: </strong>
+The Qualys Cloud Agent for VMware Tanzu tile is currently in beta and is intended for evaluation and test purposes only.
+So, the product may not be fully ready for VMware Tanzu production environment.
 </p>
 
-**This topic begins with a brief description of what the product tile (e.g. Apigee Edge Service Broker for VMware Tanzu) does,
-whereas the Overview section below describes what the service itself (e.g. Apigee Edge) does. See below for an example.**
-
-This documentation describes the Apigee Edge Service Broker for VMware Tanzu. The Apigee Edge Service
-Broker for VMware Tanzu enables developers to manage APIs for their VMware Tanzu apps through the Apigee Edge management console.
-
-**Note**: This description appears under **OVERVIEW** in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
+This documentation describes various pre-requisites, key features, installation and configuration steps for Qualys Cloud Agent for VMware Tanzu.  
 
 ## <a id='overview'></a>Overview
 
-**The overview describes the service that your product offers to VMware Tanzu developers.
-Make sure to overview the features of the integration.
-Don't focus only on the overview of your product that is being integrated.
-See below for an example.**
-
-The Apigee Edge Service Broker for VMware Tanzu registers a service broker with VMware Tanzu and exposes its service plans on the
-Marketplace. Developers can then create service plan instances using Apps Manager or the Cloud Foundry Command
-Line Interface (cf CLI) and bind them to their apps.
-
-Creating an Apigee Edge for VMware Tanzu service instance and binding it to an app creates an Apigee Edge API proxy that
-handles requests for the app. This lets developers use the Apigee Edge management console to manage API request
-handling between clients and the app.
-
-**Note**: This overview appears under **OVERVIEW**, combined with the description above in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
+The Qualys Cloud Agent for VMware Tanzu tile aims at deploying the Qualys Cloud Agent on all the (ubuntu stemcell based) VMs spun up in VMware Tanzu environment. With Qualys Cloud Agent deployed in your VMs, you will get continuous network security updates through the cloud. As soon as changes are discovered on your hosts they’ll be assessed and you’ll know about security posture and vulnerabilities of your hosts on Qualys Platform UI.
 
 ## <a id='features'></a>Key Features
 
-**Note**: This feature list appears under **FEATURES** in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
-Make sure you list the key features of the tile (the integration).
-We cannot accept a list of the key features of your product that we are integrating.
+Qualys Cloud Agent for VMware Tanzu includes the following key features:
 
-YOUR-PRODUCT-NAME includes the following key features:
-
-* Feature one
-* Feature two
-* Feature three
-
+* Qualys Cloud Agent installation on all Ubuntu stemcell based VMs in the VMware Tanzu environment.
+* Qualys Cloud Agent from all [Qualys Cloud Platforms](https://www.qualys.com/platform-identification/) is bundled in the tile and a particular Qualys Cloud Agent gets installed as per user configured inputs.
+* Private Cloud Platform(PCP) support is added by providing a custom download link. If you're using PCP, host the cloud agent at some network-accessible location inside your environment and use that URL in the download URL field on tile form during installation.
+* Using Qualys Cloud Agent, you’ll get continuous network security updates of the VMs through the cloud. As soon as changes are discovered on your VMs, they’ll be assessed and you’ll know about new security threats and vulnerabilities on your host.
 
 
 ## <a id="snapshot"></a>Product Snapshot
 
-The following table provides version and version-support information about PRODUCT-NAME.
+The following table provides version and version-support information about Qualys Cloud Agent for VMware Tanzu.
 
 <table class="nice">
     <th>Element</th>
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>vYOUR-VERSION-NUMBER</td>
+        <td>v1.0.0</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>YOUR-RELEASE-DATE (Ex: July 1, 2019)</td>
+        <td>May 13, 2020</td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>YOUR-SOFTWARE-COMPONENT-VERSION-NUMBER</td>
+        <td>2.4.0.71</td>
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>YOUR-COMPATIBLE-OPS-MAN-VERSION (Ex. 2.5, 2.6, and 2.7)</td>
+        <td>2.6.* or above</td>
     </tr>
     <tr>
         <td>Compatible Pivotal Application Service version(s)</td>
-        <td>YOUR-COMPATIBLE-PIVOTAL-APPLICATION-SERVICE-VERSION (Ex. 2.5, 2.6, and 2.7)</td>
-    </tr>
-        <tr>
-        <td>Compatible Pivotal Application Service for Windows version(s)</td>
-        <td>YOUR-COMPATIBLE-PIVOTAL-APPLICATION-SERVICE-VERSION (Ex. 2.5, 2.6, and 2.7)</td>
+        <td>2.6.* or above</td>
     </tr>
     <tr>
        <td>BOSH stemcell version</td>
-       <td>Ubuntu Xenial</td>
+       <td>Ubuntu Xenial and Ubuntu Trusty</td>
     </tr>
     <tr>
         <td>IaaS support</td>
-        <td>AWS?, Azure?, GCP?, OpenStack?, and vSphere?</td>
+        <td>AWS, Azure, GCP, OpenStack and vSphere</td>
     </tr>
 </table>
 
 
 ## <a id="reqs"></a>Requirements
 
-**Provide any general or specific requirements, prerequisites, or dependencies here.
-A general requirement might be something like, "An AppDynamics account."
-A specific requirement might be something like, "Packaging Dependencies for Offline Buildpacks."**
+Qualys Cloud Agent for VMware Tanzu has the following requirements:
 
-YOUR-PRODUCT-NAME has the following requirements:
++ Valid Qualys subscription for Qualys Cloud Agent required.
+ 
++ If you're using Private Cloud Platform(PCP), you need to host the cloud agent.
 
-+ PREREQUISITE-1
-
-+ PREREQUISITE-2
++ All the target VMs where the Qualys Cloud Agent is running, must have an outbound connection to Qualys Cloud Platforms.
 
 ## <a id="limitations"></a>Limitations
+Qualys Cloud Agent for VMware Tanzu has the following limitations:
 
-**List any known limitations.**
++ Only Ubuntu VMs are supported.
+
++ Uninstalling the tile does not cleanly remove the cloud agent and hence during installation, the existing qualys-cloud-agent package is removed first irrespective of it being installed earlier and then the configured Debian package is installed.
+
 
 ## <a id="feedback"></a>Feedback
 
-If you have a feature request, questions, or information about an issue, send an email to YOUR-SUPPORT-EMAIL.
-
-## <a id='license'></a>License
-
-**List any license information here.**
+If you have a feature request, questions, or information about an issue, contact [Qualys Support](https://www.qualys.com/support/).

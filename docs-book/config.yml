@@ -16,8 +16,8 @@ public_host: hello
 sections:
   - repository:
       name: docs-content
-    directory: PARTNER-DOCS-SUBDIR
-    subnav_template: PARTNER-DOCS-SUBDIR_subnav.erb       
+    directory: qualys-cloud-agent
+    subnav_template: qualys-cloud-agent_subnav.erb       
 
 template_variables:                             # optional
 
