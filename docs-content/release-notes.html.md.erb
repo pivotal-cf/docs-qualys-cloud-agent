@@ -9,21 +9,22 @@ These are release notes for Qualys Cloud Agent for VMware Tanzu.
 
 ##<a id="ver"></a> v1.0.0
 
-**Release Date:** May 13, 2020
+**Release Date:** May 14, 2020
 
 **Features included in this release:**
+
++ Initial beta release
 
 + Qualys Cloud Agent installation on all Ubuntu stemcell based VMs in the VMware Tanzu environment.
 
 + Qualys Cloud Agent from all [Qualys Cloud Platforms](https://www.qualys.com/platform-identification/) is bundled in the tile and a particular Qualys Cloud Agent gets installed as per user configured inputs.
 
-+ Private Cloud Platform(PCP) support is added by providing a custom download link. If you're using PCP, host the cloud agent at some network-accessible location inside your environment and use that URL in the download URL field on tile form during installation.
++ Private Cloud Platform (PCP) support is added by providing a custom download link. If you are using PCP, host the cloud agent at some network-accessible location inside your environment and use that URL in the download URL field on tile form during installation.
 
-+ Using Qualys Cloud Agent, you’ll get continuous network security updates of the VMs through the cloud. As soon as changes are discovered on your VMs, they’ll be assessed and you’ll know about new security threats and vulnerabilities.
++ Using Qualys Cloud Agent, you will get continuous network security updates of the VMs through the cloud. As soon as changes are discovered on your VMs, they will be assessed and you will know about new security threats and vulnerabilities.
 
 **Known issues in this release:**
 
 + Only Ubuntu VMs are supported.
 
 + Uninstalling the tile does not cleanly remove the cloud agent and hence during installation, the existing qualys-cloud-agent package is removed first irrespective of it being installed earlier and then the configured Debian package is installed.
-
