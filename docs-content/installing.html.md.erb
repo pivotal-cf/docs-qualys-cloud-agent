@@ -92,7 +92,7 @@ There could be some issue while running the pre-start script. If its PCP, the do
 
 + **Solution:**
 
-Log into the VM for which pre-start script failed. Check logs at following location:
+  Log into the VM for which pre-start script failed. Check logs at following location:
 
   ```
   /var/vcap/sys/log/qualys-cloud-agent-linux/pre-start.stdout.log
@@ -106,8 +106,7 @@ Log into the VM for which pre-start script failed. Check logs at following locat
   /var/vcap/sys/log/qualys-cloud-agent-linux/qualys-agent-pre-install.log
   ```
 
-In case of PCP, the download URL might not be accessible within the deployment, check if it is downloadable through curl from within the deployment VM.
-
+  In case of PCP, the download URL might not be accessible within the deployment, check if it is downloadable through curl from within the deployment VM.
 
 **2. Deployed VM and Vulnerability Data is not displayed on Qualys UI**
 
