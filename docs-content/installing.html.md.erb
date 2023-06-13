@@ -19,39 +19,64 @@ This adds the tile to your staging area.
 1. Click the newly added **Qualys Cloud Agent for VMware Tanzu** tile.
 
 1. Populate the data in the **Qualys Account Configuration** form.
-<img src="images/qualys_account_configuration.png" alt="Qualys Account Configuration">
+
+    ![Qualys Account Configuration](images/qualys_account_configuration.png)
 
 1. For **Qualys Cloud Platform**, select a platform from dropdown. If you select Private Cloud Platform (PCP), configure the URL in **Download URL for Cloud Agent** field. The PCP users are required to host their cloud agent debian package at some location internal to their network and then provide that URL in the **Download URL for Cloud Agent** field while account configuration. This .deb package should be downloadable through either curl or wget and the location should be accessible within the deployments.
 
-1. Enter **Qualys Activation ID** and **Qualys Customer ID** obtained from Qualys Platform. For more information about getting these parameters, refer to [Qualys Cloud Agent Getting Started Guide](https://www.qualys.com/docs/qualys-cloud-agent-getting-started-guide.pdf).
+2. Enter **Qualys Activation ID** and **Qualys Customer ID** obtained from Qualys Platform. For more information about getting these parameters, refer to [Qualys Cloud Agent Getting Started Guide](https://www.qualys.com/docs/qualys-cloud-agent-getting-started-guide.pdf).
 
-1. If Qualys Cloud Platform is not directly accessible from target VMs, click **Proxy Settings** tab to configure proxy settings. These settings are optional and need to provide only when you need proxy for target VMs.
-<img src="images/proxy_settings.png" alt="Proxy Settings">
+3. If Qualys Cloud Platform is not directly accessible from target VMs, click **Proxy Settings** tab to configure proxy settings. These settings are optional and need to provide only when you need proxy for target VMs.
+
+    ![Proxy Settings](images/proxy_settings.png)
 
 1. For **Proxy Server and Port**, specify the proxy server and port in the http[s]://host[:port] format. For authenticated proxy, provide **Proxy Username** and **Proxy Password**. For PCP users to download Qualys Cloud Agent using proxy, select **Use the same proxy for downloading Qualys Cloud Agent from your hosted location (applicable only to PCP customers)** checkbox.
 
-1. Click **Save**.
+2. Click **Save**.
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install Qualys Cloud Agent for VMware Tanzu tile. When installation is successful, you can see Qualys Cloud Agents installed on your deployments.
+3. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install Qualys Cloud Agent for VMware Tanzu tile. When installation is successful, you can see Qualys Cloud Agents installed on your deployments.
 
 ##<a id='installverification'></a> Verification of Installation and Configuration
 
-1. The output of <code>$bosh deployments</code> shows **qualys-cloud-agent/x.x.x**
-<img src="images/qualys_cloud_agent_bosh_output.png" alt="Qualys Cloud Agent Bosh Output">
+1. The screenshot shows the output of the following command: 'qualys-cloud-agent/x.x.x'.
 
-1. To verify the Qualys Cloud Agent installation and provisioning, you can use BOSH CLI on the Ops Manager VM and check with command:<code>$bosh vms</code>. List of VMs with IP address are listed in the following screenshot. You can check that same IP address is listed on the Qualys Platform UI( Refer screnshot in #5 listed below).
-<img src="images/qualys_cloud_agent_verification.png" alt="Qualys Cloud Agent Verification">
+    ```
+    $bosh deployments
+    ```
 
-1. Qualys Cloud Agent is installed on all of the cf-XXXXXXX deployment VMs. You can ssh into any of these VMs and verify: <code>$ bosh ssh -d cf-56372e3e3422ffa3b888 compute/3018e0a3-175a-4be0-ac53-4ed454a1218e</code>
-To check if the Qualys Cloud Agent process is running, run the command: <code>$ ps -eaf | grep qualys</code>
-<img src="images/qualys_cloud_agent_ssh.png" alt="Qualys Cloud Agent SSH">
+    ![Qualys Cloud Agent Bosh Output](images/qualys_cloud_agent_bosh_output.png)
 
-1. In case of custom BOSH deployments, other than cf-deployment, make sure to re-deploy the deployment after tile installation to get the Qualys Cloud Agent Bosh release deployed on it's VMs.
+2. To verify the Qualys Cloud Agent installation and provisioning, you can use BOSH CLI on the Ops Manager VM and check with command:
 
-1. You can check logs at <pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/qualys-cloud-agent.log</pre>
+    ```
+    $bosh vms
+    ```
 
-1. You can verify on respective Qualys Platform UI > Cloud Agent module, to see if this new instance VM has a Qualys Cloud Agent provisioned and functioning properly.
-<img src="images/qualys_cloud_agent_ui.png" alt="Qualys Cloud Agent UI">
+3. The List of VMs with IP address are listed in the following screenshot. You can check that same IP address is listed on the Qualys Platform UI. (Refer to screenshot in #5 listed below).
+
+    ![Qualys Cloud Agent Verification](images/qualys_cloud_agent_verification.png)
+
+4. Qualys Cloud Agent is installed on all of the cf-XXXXXXX deployment VMs. You can ssh into any of these VMs and verify:
+
+   ```
+   $ bosh ssh -d cf-56372e3e3422ffa3b888 compute/3018e0a3-175a-4be0-ac53-4ed454a1218e
+   ```
+
+5. To check if the Qualys Cloud Agent process is running, run the command:
+
+    ```
+    $ ps -eaf | grep qualys
+    ```
+
+    ![Qualys Cloud Agent SSH](images/qualys_cloud_agent_ssh.png)
+
+6. In case of custom BOSH deployments, other than cf-deployment, make sure to re-deploy the deployment after tile installation to get the Qualys Cloud Agent Bosh release deployed on its VMs.
+
+7. You can check logs at <pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/qualys-cloud-agent.log</pre>
+
+8.  You can verify on respective Qualys Platform UI > Cloud Agent module, to see if this new instance VM has a Qualys Cloud Agent provisioned and functioning properly.
+
+    ![Qualys Cloud Agent UI](images/qualys_cloud_agent_ui.png)
 
 ##<a id='troubleshooting'></a> Troubleshooting
 
@@ -67,16 +92,21 @@ There could be some issue while running the pre-start script. If its PCP, the do
 
 + **Solution:**
 
-Log into the VM for which pre-start script failed. Check logs at following location:
+  Log into the VM for which pre-start script failed. Check logs at following location:
 
-<pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/pre-start.stdout.log</pre>
+  ```
+  /var/vcap/sys/log/qualys-cloud-agent-linux/pre-start.stdout.log
+  ```
 
-<pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/pre-start.stderr.log</pre>
+  ```
+  /var/vcap/sys/log/qualys-cloud-agent-linux/pre-start.stderr.log
+  ```
 
-<pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/qualys-agent-pre-install.log</pre>
+  ```
+  /var/vcap/sys/log/qualys-cloud-agent-linux/qualys-agent-pre-install.log
+  ```
 
-In case of PCP, the download URL might not be accessible within the deployment, check if it is downloadable through curl from within the deployment VM.
-
+  In case of PCP, the download URL might not be accessible within the deployment, check if it is downloadable through curl from within the deployment VM.
 
 **2. Deployed VM and Vulnerability Data is not displayed on Qualys UI**
 
@@ -87,13 +117,20 @@ You do not see your deployment VM listed on Qualys UI and no vulnerability data 
 The Qualys Cloud agent might have not provisioned properly or there is issue with the deployed Cloud Agent communicating to Qualys platform.
 
 + **Solution:**
+Check the installation status in job start log at: 
 
-Check the installation status in job start log at: <pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/qualys-agent-install.log</pre>
+  ```
+  /var/vcap/sys/log/qualys-cloud-agent-linux/qualys-agent-install.log
+  ```
 
-Check the Qualys Cloud Agent logs at: <pre class="terminal">/var/vcap/sys/log/qualys-cloud-agent-linux/qualys-cloud-agent.log</pre>
+  Check the Qualys Cloud Agent logs at:
 
-There you might see the API response code as 404 or a non-200 code, check if Qualys platform is reachable from the VM.
+  ```
+  /var/vcap/sys/log/qualys-cloud-agent-linux/qualys-cloud-agent.log
+  ```
 
-Also re-check if you have used correct Activation Id and Customer Id for the selected Qualys Platform.
+  There you might see the API response code as 404 or a non-200 code, check if Qualys platform is reachable from the VM.
 
-If everything is in place and Agent log shows successful API calls, then wait for some time for data to be available on Qualys UI. Depending on Platform workload it might take time to process the data. If still no data is available, contact Qualys support.
+  Also re-check if you have used correct Activation Id and Customer Id for the selected Qualys Platform.
+
+  If everything is in place and Agent log shows successful API calls, then wait for some time for data to be available on Qualys UI. Depending on Platform workload it might take time to process the data. If still no data is available, contact Qualys support.
